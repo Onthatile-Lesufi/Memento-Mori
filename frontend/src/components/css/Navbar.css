@@ -1,0 +1,23 @@
+.navbar-container {
+    height: 10vh;
+    width: 100%;
+    background-color: brown;
+    /* position: fixed; */
+    /* z-index: 2; */
+    align-content: space-around;
+    justify-content: center;
+}
+
+.nav-buttons {
+    float: left;
+    align-content:space-evenly;
+    height: 100%;
+}
+
+.navbar-link {
+    text-decoration: none;
+}
+
+.login-button {
+    float: right;
+}
