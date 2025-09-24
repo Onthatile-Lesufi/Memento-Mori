@@ -1,0 +1,23 @@
+.grave-comment-section {
+    margin-bottom: 7.5vh;
+}
+
+.grave-comment-form {
+    margin-bottom: 5vh;
+}
+
+.grave-comment-text-input {
+    border-width: 0px;
+    border-radius: 0%;
+    border-color: rgb(121, 121, 121);
+    border-style: solid;
+    border-bottom-width: 0.0625rem;
+}
+
+.grave-comment-container {
+    margin-top: 2.5vh;
+}
+
+.grave-no-comments {
+    text-align: center;
+}

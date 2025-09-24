@@ -1,0 +1,13 @@
+.grave-info-panel {
+    width: 100%;
+    height: 10vh;
+    border-width: 0.0625rem;
+    border-style: solid;
+    border-radius: 1rem;
+    margin-bottom: 2.5vh;
+    padding: 1.25rem;
+}
+
+.grave-info-heading {
+    font-weight: 600;
+}

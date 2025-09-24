@@ -1,0 +1,31 @@
+.contribute-container {
+    width: 100%;
+    min-height: 90vh;
+    align-content: center;
+}
+
+.tab-button-row {
+    width: 100%;
+    height: fit-content;
+    --bs-gutter-x: 0;
+    align-content: center;
+}
+
+#contribution-nav-container {
+    width: 65%;
+    margin-left: 17.5%;
+    margin-right: 17.5%;
+    align-self: center;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.tab-content-display {
+    margin-top: 5vh;
+    height: 60vh;
+    max-height: 75vh;
+    --bs-gutter-x: 0;
+    align-content: center;
+}

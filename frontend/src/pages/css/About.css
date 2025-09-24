@@ -1,0 +1,9 @@
+.about-container {
+    width: 100%;
+    min-height: 90vh;
+    justify-content: space-around;
+    align-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    text-align: center;
+}

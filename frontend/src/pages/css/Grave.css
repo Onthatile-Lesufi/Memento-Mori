@@ -1,0 +1,47 @@
+.grave-container {
+    width: 100%;
+    min-height: 90vh;
+}
+
+.grave-name {
+    margin-top: 7.5vh;
+    margin-bottom: 5vh;
+}
+
+.grave-image-holder {
+    width: 100%;
+    height: 62.5vh;
+    background-color: antiquewhite;
+}
+
+.grave-button-row {
+    width: 100%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.grave-buttons {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 576px) {
+    .grave-image-holder {
+        height: 40vh;
+        margin-bottom: 5vh;
+    }
+
+    .grave-button-row {
+        margin-top: 2vh;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .grave-buttons {
+        height: 5.5vh;
+        margin-bottom: 2.5vh;
+    }
+}

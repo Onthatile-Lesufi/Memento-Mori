@@ -1,0 +1,11 @@
+.contribution-media-input-container {
+
+}
+
+.contribution-media-display {
+    width: 100%;
+    height: 45vh;
+    object-fit: contain;
+    margin: 0 auto;
+    margin-bottom: 2.5vh;
+}

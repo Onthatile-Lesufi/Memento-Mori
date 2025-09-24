@@ -1,10 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './css/Navbar.css';
 import { useEffect, useState } from 'react';
 import TextButton from './TextButton';
+import { Form } from 'react-bootstrap';
 function Navbar() {
     const [ user, setUser ] = useState(null);
     const [ headings, setHeadings ] = useState([]);
+    const [ browseQuery, setBrowseQuery] = useState("");
+    let _navigate = useNavigate();
 
     const navHeadings = [
         {
@@ -12,11 +15,11 @@ function Navbar() {
             label: "Home",
             role: "User"
         },
-        {
-            endPoint: "/browse",
-            label: "Browse",
-            role: "User"
-        },
+        // {
+        //     endPoint: "/browse",
+        //     label: "Browse",
+        //     role: "User"
+        // },
         {
             endPoint: "/about",
             label: "About Us",
@@ -56,6 +59,15 @@ function Navbar() {
         setHeadings(_result);
     }
 
+    function handleKeyPress(event) {
+        if (event.key === "Enter" && browseQuery !== "") {
+            let _searchBar = document.getElementById("navbar-searchbar");
+            _navigate(`/browse/${_searchBar.value}`);
+            _searchBar.value = "";
+            _searchBar.blur();
+        }
+    }
+
     useEffect(() => {
         GetUser();
     }, []);
@@ -76,7 +88,13 @@ function Navbar() {
                 ))}
             </div>
 
-            <TextButton className="login-button" title={"Log In"} endPoint={"/login"}/>
+            <div className='navbar-searchbar-container'>
+                <Form.Control id='navbar-searchbar' className='navbar-searchbar' type='text' placeholder='Search...' onKeyPress={handleKeyPress} onChange={(e) =>setBrowseQuery(e.target.value)}/>
+            </div>
+
+            <div id='login-button-container'>
+                <TextButton className="login-button" title={"Log In/Sign Up"} endPoint={"/login"}/>
+            </div>
         </nav>
     );
 }
