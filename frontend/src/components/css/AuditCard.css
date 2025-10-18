@@ -2,4 +2,72 @@
     width: 100%;
     border-width: 0.03125rem;
     border-style: solid;
+    position: relative;
+}
+
+.audit-card-image-col {
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+.audit-card-image-container {
+    height: 25vh;
+    width: 100%;
+}
+
+.audit-card-image {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.audit-card-text-col {
+    width: 68%;
+    height: 100%;
+    align-content: center;
+    float: right;
+    margin-left: 2%;
+}
+
+.audit-card-button-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    position: absolute;
+    justify-content: center;
+    align-content: space-evenly;
+    display: flex;
+    gap: 1.25vw;
+    padding-top: 7%;
+}
+
+.audit-card-button {
+    height: 4.5vh;
+    width: 15%;
+}
+
+@media (max-width: 576px) {
+    .audit-card-container {
+        width: 100%;
+        border-width: 0.03125rem;
+        border-style: solid;
+        position: relative;
+        display: grid;
+    }
+    .audit-card-image-col {
+        width: 100%;
+        float: none;
+    }
+    
+    .audit-card-text-col {
+        height: 27.5vh;
+        width: 100%;
+        margin: 0;
+        padding-left: 5vw;
+        align-content: center;
+        float: none;
+    }
 }

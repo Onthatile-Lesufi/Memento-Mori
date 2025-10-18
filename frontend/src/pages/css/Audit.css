@@ -1,4 +1,27 @@
 #audit-container {
     width: 100%;
     min-height: 90vh;
+    box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    background-color: white;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+#audit-title {
+    margin-bottom: 5vh;
+    margin-left: 1.5vw;
+}
+
+.audit-accordion {
+    border: none;
+    border-radius: 0%;
+}
+
+.audit-card-holder {
+    display: grid;
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+    gap: 2vh;
 }

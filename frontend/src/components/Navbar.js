@@ -1,55 +1,76 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { data, Link, NavLink, useNavigate } from 'react-router-dom';
 import './css/Navbar.css';
 import { useEffect, useState } from 'react';
 import TextButton from './TextButton';
-import { Form } from 'react-bootstrap';
+import { Button, Form, Offcanvas } from 'react-bootstrap';
+import logo from "../assets/graphics/Memento-Mori-Logo.png";
+import { TextAlignJustify } from 'lucide-react';
+import { Search, ArrowLeft } from 'lucide-react';
+import axios from 'axios';
+
+// const SearchBar
+
 function Navbar() {
     const [ user, setUser ] = useState(null);
     const [ headings, setHeadings ] = useState([]);
     const [ browseQuery, setBrowseQuery] = useState("");
+    const [showOffCanvas, setShowOffCanvas] = useState(false);
+    const [focusSearchbar, setFocusSearchbar] = useState(false);
+    const [hideSearchbar, setHideSearchbar] = useState(false);
     let _navigate = useNavigate();
 
     const navHeadings = [
         {
             endPoint: "/",
             label: "Home",
-            role: "User"
+            role: "user"
         },
-        // {
-        //     endPoint: "/browse",
-        //     label: "Browse",
-        //     role: "User"
-        // },
         {
             endPoint: "/about",
             label: "About Us",
-            role: "User"
+            role: "user"
         },
         {
             endPoint: "/faq",
             label: "FAQ",
-            role: "User"
+            role: "user"
         },
         {
             endPoint: "/contribute",
             label: "Contribute",
-            role: "Contributor"
+            role: "contributor"
         },
         {
             endPoint: "/audit",
             label: "Audit",
-            role: "Admin"
+            role: "admin"
         },
     ]
 
     async function GetUser() {
-        let _result = [ ];
+        try {
+            const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
+                withCredentials: true,
+            });
+            if (_res) {
+                setUser(_res.data.user);
+            }
+        
+        } catch (error) {
+            console.error("Error: ",error);
+        }
+        GetHeadings();
+    }
+
+    function GetHeadings () {
+        let _result = [];
         navHeadings.forEach(_index => {
-            if (_index.role === "User") {
+            if (_index.role === "user") {
                 _result.push(_index);
             } else if (user) {
-                let _canContribute = _index.role === "Contributor" && (user.role === "Admin" || user.role === "Contributor");
-                let _isAdmin = _index.role === "Admin" && user.role === "Admin";
+                
+                let _canContribute = _index.role === "contributor" && (user.role === "admin" || user.role === "contributor");
+                let _isAdmin = _index.role === "admin" && user.role === "admin";
                 if (_canContribute || _isAdmin) {
                     _result.push(_index);
                 }
@@ -65,36 +86,109 @@ function Navbar() {
             _navigate(`/browse/${_searchBar.value}`);
             _searchBar.value = "";
             _searchBar.blur();
+            setFocusSearchbar(false)
+        }
+    }
+
+    function HandleOffcanvasButton (index) {
+        setShowOffCanvas(false);
+        _navigate(index.endPoint);
+    }
+
+    function HandleSearchbar () {
+        setHideSearchbar(window.innerWidth <= 720);
+        if (hideSearchbar) {
+
+        } else {
+            setFocusSearchbar(false)
         }
     }
 
     useEffect(() => {
+        window.addEventListener("resize",HandleSearchbar);
         GetUser();
     }, []);
 
+    useEffect(() => {
+        GetHeadings();
+    }, [user]);
+
     return (
         <nav className='navbar-container'>
-            <div className='nav-buttons'>
-                {headings.map((_index) => (
-                    <NavLink
-                        to={_index.endPoint}
-                        className="navbar-link"
-                        style={({ isActive }) => ({
-                          fontWeight: isActive ? "800" : "normal",
-                        })}
-                    >
-                        {_index.label}
-                    </NavLink>
-                ))}
-            </div>
+            {focusSearchbar ?
+                <div className='navbar-focus-searchbar-container'>
+                    <div className='navbar-mobile-back-button' onClick={()=>{setFocusSearchbar(false)}}>
+                        <ArrowLeft size="2.5rem"/>
+                    </div>
+                    <Form.Control id='navbar-searchbar'className='navbar-mobile-searchbar' type='text' placeholder='Search...' onKeyDown={handleKeyPress} onChange={(e) =>setBrowseQuery(e.target.value)}/>
+                </div>
+            : 
+                <>
+                    <div className='navbar-offcanvas-button' onClick={() => setShowOffCanvas(true)}>
+                        <TextAlignJustify size="3.5rem" strokeWidth={"0.05rem"}/>
+                    </div>
+                    <Link className='navbar-logo-container' to={"/"}>
+                        <img src={logo}  className='navbar-logo'/>
+                    </Link>
+                
+                    <div className='navbar-searchbar-container'> 
+                        {hideSearchbar ? 
+                            <div className='navbar-searchbar-button' onClick={()=>{setFocusSearchbar(true)}}>
+                                <Search size="3rem" strokeWidth="0.1rem"/>
+                            </div>
+                        :  
+                            <Form.Control id='navbar-searchbar' className='navbar-searchbar' type='text' placeholder='Search...' onKeyDown={handleKeyPress} onChange={(e) =>setBrowseQuery(e.target.value)}/>
+                        }
+                    </div>
+                    <div id='login-button-container'>
+                        {user?
+                            <Link to={`/user/${user.email}`}>{user.username}</Link>
+                            :
+                            <TextButton className="login-button" title={"Log In/Sign Up"} endPoint={"/login"}/>
+                        }
+                    </div>
+                </>
+            }
 
-            <div className='navbar-searchbar-container'>
-                <Form.Control id='navbar-searchbar' className='navbar-searchbar' type='text' placeholder='Search...' onKeyPress={handleKeyPress} onChange={(e) =>setBrowseQuery(e.target.value)}/>
-            </div>
-
-            <div id='login-button-container'>
-                <TextButton className="login-button" title={"Log In/Sign Up"} endPoint={"/login"}/>
-            </div>
+            <Offcanvas className="navbar-offcanvas" show={showOffCanvas} onHide={() => setShowOffCanvas(false)}>
+                <Offcanvas.Header closeButton>
+                    <Link className='offcanvas-logo-container' to={"/"} onClick={() => setShowOffCanvas(false)}>
+                        <img src={logo}  className='navbar-logo'/>
+                    </Link>
+                    <Offcanvas.Title>
+                        Memento Mori
+                    </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    {headings.map((_index) => (
+                        <div 
+                            className='offcanvas-link-container'
+                            onClick={()=> HandleOffcanvasButton(_index)}
+                        >
+                            <NavLink
+                                to={_index.endPoint}
+                                className="offcanvas-link"
+                                style={({ isActive }) => ({
+                                  fontWeight: isActive ? "800" : "normal",
+                                })}
+                                onClick={() => setShowOffCanvas(false)}
+                            >
+                                {_index.label}
+                            </NavLink>
+                        </div>
+                    ))}
+                    <hr/>
+                    <div className='offcanvas-link-container'>
+                        <NavLink
+                            to="/login"
+                            className="offcanvas-link"
+                            onClick={() => setShowOffCanvas(false)}
+                        >
+                            Log In/Sign Up
+                        </NavLink>
+                    </div>
+                </Offcanvas.Body>
+            </Offcanvas>
         </nav>
     );
 }

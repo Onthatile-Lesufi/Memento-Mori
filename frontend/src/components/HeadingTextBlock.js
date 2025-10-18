@@ -4,7 +4,7 @@ const HeadingTextBlock = ({heading, text}) => {
     return (
         <div>
             <h3>{heading}</h3>
-            <pre className="block-text">{text}</pre>
+            <p className="block-text">{text}</p>
         </div>
     );
 }

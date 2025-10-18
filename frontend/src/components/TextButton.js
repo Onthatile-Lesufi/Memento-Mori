@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const TextButton = ({title, endPoint}) => {
     return (
         <Link to={endPoint}>
-            <Button>
+            <Button className="text-button">
                 {title}
             </Button>
         </Link>

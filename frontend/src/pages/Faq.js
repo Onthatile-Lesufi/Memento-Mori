@@ -1,9 +1,9 @@
-import { Accordion } from "react-bootstrap";
+import { Accordion, Container } from "react-bootstrap";
 import "./css/Faq.css";
 
 function Faq() {
     return (
-        <div className="faq-container">
+        <Container className="faq-container">
             <h2 className="faq-title">Frequently Asked Questions</h2>
             <Accordion className="faq-accordion">
                 <Accordion.Item eventKey="0">
@@ -67,7 +67,7 @@ function Faq() {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-        </div>
+        </Container>
     )
 }
 

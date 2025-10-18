@@ -1,0 +1,47 @@
+.link-card-container {
+    width: 100%;
+    height: 12vh;
+    position: relative;
+}
+
+.link-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.link-card-name-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex; 
+    z-index: 1;
+    position: absolute;
+}
+
+.link-card-name {
+    color: white;
+    align-self: last baseline;
+    margin-left: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+/* ============================ */
+
+.link-card-container:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .link-card-name {
+        color: white;
+        align-self: last baseline;
+        margin-left: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: small;
+    }
+}

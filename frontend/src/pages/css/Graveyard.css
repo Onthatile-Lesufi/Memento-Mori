@@ -1,3 +1,18 @@
 .graveyard-container {
     min-height: 90vh;
+    width: 100%;
+    padding-top: 5vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.57);
+    background-color: white;
+}
+
+.graveyard-grid {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    column-gap: 1%;
+    row-gap: 2%;
 }

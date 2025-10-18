@@ -2,21 +2,36 @@ import { Link, useNavigate } from "react-router-dom";
 import "./css/SignUp.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 function SignUp() {
     const [ username, setUsername ] = useState(null);
-    const [ password, setPassword ] = useState(null);
+    const [ email, setEmail ] = useState(null);
+    const [ password, setPassword ] = useState("");
     const [ isSamePassword, setIsSamePassword ] = useState(false);
     let _navigate = useNavigate();
 
     function ConfirmPassword (tempPassword) {
-        console.log(password === tempPassword);
-        setIsSamePassword(password === tempPassword);
+        let _result = password === tempPassword && password !== "" && tempPassword !== "";
+        setIsSamePassword(_result);
     }
 
-    function RegisterUser () {
+    async function RegisterUser () {
         if (!isSamePassword) return;
-        _navigate("/")
+        try {
+            const _res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, {
+                username: username,
+                email: email,
+                password: password
+            },
+            {
+                withCredentials: true, // Ensure cookies are sent with the request
+            })
+            
+            _navigate("/");
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -24,6 +39,9 @@ function SignUp() {
             <div className="signup-form-container">
                 <h2>Sign Up</h2>
                 <Form onSubmit={RegisterUser}>
+                    <Form.Control className="form-text-control" type="text" placeholder="Email" onChange={
+                        (e) => setEmail(e.target.value)
+                    } required/>
                     <Form.Control className="form-text-control" type="text" placeholder="Username" onChange={
                         (e) => setUsername(e.target.value)
                     } required/>
