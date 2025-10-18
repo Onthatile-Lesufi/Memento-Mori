@@ -3,6 +3,7 @@ const session = require('express-session');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const mysql = require('mysql');
+const path = require('path');
 
 dotenv.config();
 
@@ -36,9 +37,17 @@ const database = mysql.createConnection({
     database: "memento-mori"
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+    app.get('', (_, res) => {
+        res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"))
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('Hello World!');
+    });
+}
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
