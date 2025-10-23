@@ -133,9 +133,8 @@ router.post("/register", upload.single('image'), async (req, res) => {
             if (err) {
                 res.status(400).json({ error: err.message });
             } {
-                res.status(200).json(data);
                 if (req.file) {
-                    cloudinary.uploader.upload(req.file.path, (err,result) => {
+                    cloudinary.uploader.upload(req.file.path, async (err,result) => {
                         if (err) {
                             console.log(err);
                             return res.status(400).json({
@@ -145,8 +144,9 @@ router.post("/register", upload.single('image'), async (req, res) => {
                         }
                     
                         _cloudinaryResult = result;
-                        const _sql = `UPDATE grave SET grave_image = '${_cloudinaryResult.secure_url}' WHERE grave.id_number = '${formData.id}'`;
-                        database.query(_sql, (err, data) => {
+                        if (!_cloudinaryResult) return;
+                        const _cloudinarySql = `UPDATE grave SET grave_image = '${_cloudinaryResult.secure_url}' WHERE grave.id_number = '${formData.id}'`;
+                        database.query(_cloudinarySql, (err, data) => {
                             if (err) {
                                 res.status(400).json({ error: err.message });
                             } {
@@ -154,6 +154,8 @@ router.post("/register", upload.single('image'), async (req, res) => {
                             }
                         })
                     })
+                } else {
+                    res.status(200).json(data);
                 }
             }
         })
