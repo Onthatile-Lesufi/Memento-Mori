@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LinkCard = ({name,link,image}) => {
-    const [isHovering, setIsHovering] = useState(false);
     const navigation = useNavigate();
 
     function OnClickInvoked () {
@@ -12,15 +11,11 @@ const LinkCard = ({name,link,image}) => {
     }
 
     return (
-        <div className="link-card-container" onClick={OnClickInvoked} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+        <div className="link-card-container" onClick={OnClickInvoked}>
             <img className="link-card-image" src={image ? image : GraveImage} alt=""/>
-            {isHovering ?
-                <div className="link-card-name-container">
-                    <h3 className="link-card-name">{name ? name : "Name"}</h3>
-                </div>
-            :
-                null
-            }
+            <div className="link-card-name-container">
+                <h3 className="link-card-name">{name ? name : "Name"}</h3>
+            </div>
         </div>
     )
 } 

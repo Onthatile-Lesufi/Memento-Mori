@@ -26,7 +26,7 @@ const Graveyard = () => {
             let _data = _res.data;
             if (_data.length > 0) {
                 _data.forEach(_i => {
-                    _cards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`}/>);
+                    _cards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image ? _i.grave_image : null}/>);
                 });
                 setCards(_cards);
             }

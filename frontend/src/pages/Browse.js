@@ -40,7 +40,7 @@ const Browse = () => {
                 _graves.slice(10,_length);
             }
             _graves.forEach(_i => {
-                _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`}/>);
+                _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image}/>);
             });
             setGraves(_graveCards);
 

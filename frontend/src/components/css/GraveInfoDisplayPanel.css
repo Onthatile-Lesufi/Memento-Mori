@@ -3,10 +3,6 @@
     height: 10vh;
     border-width: 0.0625rem;
     border-style: solid;
-    border-radius: 1rem;
-    padding: 1.25rem;
-}
-
-.grave-info-heading {
-    font-weight: 600;
+    padding-left: 2.5%;
+    align-content: center;
 }

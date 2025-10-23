@@ -9,61 +9,36 @@ function Faq() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>What services do we offer?</Accordion.Header>
                     <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        Memento Mori is a digital archive dedicated to cataloging and preserving the graves, cemeteries, and 
+                        memorial sites across South Africa. Our platform provides tools for exploration, research, and remembrance.
+                        <br/><br/>Here's a breakdown of our core offerings:
+                        <ul>
+                            <li><b>Grave & Cemetery Database</b><br/> Search a growing collection of graves, cemeteries, and memorials across South Africa. Filter by cemetery to find specific individuals or explore historical burial grounds.</li>
+                            <li><b>User Contributions</b><br/> Upload transcriptions, and personal stories to help preserve the memory of those who came before us. Every contribution helps expand and enrich the archive.</li>
+                        </ul>
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Why does the website have accounts?</Accordion.Header>
                     <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        The existence of accounts is primarily for the convenience of our userbase.
+                        Using our account system users are able to save the details of a grave, comment on graves and more easily share grave details with other users.
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
                     <Accordion.Header>What if a certain grave or graveyard is not present on the database?</Accordion.Header>
                     <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        In the event of a grave/graveyard missing from our database then consider reaching out to 
+                        any one of our 24/7 admin team or contribution team with the missing entry. They will attempt to verify the missing entry.
+                        If the are able to verify the missing entry it will be added to our database. 
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="3">
-                    <Accordion.Header>How do I add a grave or graveyard to the website?</Accordion.Header>
-                    <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="4">
                     <Accordion.Header>How do I become a contributor?</Accordion.Header>
                     <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        We care a lot about our mission and thus we only let a small group of 
+                        people contribute to our website. If you feel that our values align with your own. Then consider reaching out to 
+                        any one of our 24/7 admin team and we can discuss your fit within our team's structure.
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

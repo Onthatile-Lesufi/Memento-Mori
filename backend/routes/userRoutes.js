@@ -1,30 +1,25 @@
 const express = require("express");
 const session = require("express-session");
-const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const app = express();
 const router = express.Router();
+const database = require("../middleware/database");
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET, // Replace with a strong secret key
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     cookie: {
-      secure: false, // Set to true if using HTTPS
-      httpOnly: true,
-      sameSite: "Lax", // Use 'None' if working cross-origin with credentials
-      maxAge: process.env.MAX_COOKIE_AGE,
+        path: "/",
+        secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS
+        httpOnly: true,
+        sameSite: "Lax", // Use 'None' if working cross-origin with credentials
+        maxAge: process.env.MAX_COOKIE_AGE,
     },
   })
 );
-
-const database = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password:"",
-    database: "memento-mori"
-})
 
 router.get("/", async (req, res) => {
     try {
@@ -61,13 +56,11 @@ router.post("/register", async (req, res) => {
     const {username, email, password} = req.body;
     try {
         let _password = await bcrypt.hash(password,13);
-        //todo: update sql statement
         const _sql = `INSERT INTO user(username, user_email, password, user_role) VALUES ('${username}','${email}','${_password}','user')`;
         database.query(_sql, (err, data) => {
             if (err) {
                 res.status(400).json({ error: err.message });
             } {
-                // UpdateSession(email);
                 res.status(200).json(data);
             }
         });
@@ -95,6 +88,7 @@ router.post("/login", async (req, res) => {
                     username: data[0].username,
                     email: data[0].user_email,
                     role: data[0].user_role,
+                    id: data[0].user_id
                 };
                 req.session.authenticated = true;
                 
@@ -106,14 +100,28 @@ router.post("/login", async (req, res) => {
     }
 })
 
+router.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Error logging out');
+        }
+      
+        res.clearCookie('connect.sid', {path:"/"}); 
+        res.status(200).json({ message: "Login successful"});
+        res.session = null;
+        res.end();
+    });
+});
+
 router.get("/current", async (req, res) => {
     const user = req.session.user;
+    const authentication = req.session.authenticated;
     if (!user) {
         return res.status(401).json({ message: "Unauthorized" });
     }
-    console.log("Hello: ", req.session.user);
 
-    if (user) res.status(200).json({ message: "Login successful", user });
+    if (user) res.status(200).json({ message: "Login successful", user, authentication });
 })
 
 router.get("/email=:email", async (req, res) => {

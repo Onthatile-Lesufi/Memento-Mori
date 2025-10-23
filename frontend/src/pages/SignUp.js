@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./css/SignUp.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 
@@ -16,6 +16,20 @@ function SignUp() {
         setIsSamePassword(_result);
     }
 
+    async function GetUser() {
+        try {
+            const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
+                withCredentials: true,
+            });
+            if (_res.data) {
+                _navigate("/");
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error("Error: ",error);
+        }
+    }
+
     async function RegisterUser () {
         if (!isSamePassword) return;
         try {
@@ -28,17 +42,24 @@ function SignUp() {
                 withCredentials: true, // Ensure cookies are sent with the request
             })
             
-            _navigate("/");
+            if (_res.data) {
+                _navigate("/login");
+                window.location.reload();
+            }
         } catch (error) {
             console.error(error);
         }
     }
 
+    useEffect(() => {
+        GetUser();
+    }, []);
+
     return (
         <div className="login-container">
             <div className="signup-form-container">
                 <h2>Sign Up</h2>
-                <Form onSubmit={RegisterUser}>
+                <Form>
                     <Form.Control className="form-text-control" type="text" placeholder="Email" onChange={
                         (e) => setEmail(e.target.value)
                     } required/>
@@ -51,7 +72,7 @@ function SignUp() {
                     <Form.Control className="form-text-control" type="password" placeholder="Confirm Password" onChange={
                         (e) => ConfirmPassword(e.target.value)
                     } required/>
-                    <Button type={"submit"}>
+                    <Button className="sign-up-button" onClick={RegisterUser}>
                         Sign Up
                     </Button>
                 </Form>

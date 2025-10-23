@@ -1,15 +1,7 @@
 const express = require("express");
-const mysql = require("mysql");
+const database = require("../middleware/database");
 const app = express();
 const router = express.Router();
-
-
-const database = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password:"",
-    database: "memento-mori"
-})
 
 router.get("/", async (req, res) => {
     try {
@@ -86,6 +78,54 @@ router.post("/register", async (req, res) => {
         })
     } catch (error) {
         console.error("error:",error);
+    }
+})
+
+router.patch("/clear", async (req, res) => {
+    const {index} = req.body;
+    try {
+        const _sql = `UPDATE graveyard SET graveyard_visibility = true WHERE graveyard_id = ${index}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
+
+router.patch("/restrict", async (req, res) => {
+    const {index} = req.body;
+    try {
+        const _sql = `UPDATE graveyard SET graveyard_visibility = false WHERE graveyard_id = ${index}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
+
+router.delete("/delete=:id", async (req, res) => {
+    const index = req.params.id;
+    try {
+        const _sql = `DELETE FROM graveyard WHERE graveyard_id = ${index}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
 })
 

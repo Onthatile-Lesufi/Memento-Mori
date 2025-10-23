@@ -8,8 +8,33 @@ import { useNavigate } from "react-router-dom";
 function Audit() {
     const [ graveCards, setGraveCards ] = useState([]);
     const [ graveyardCards, setGraveyardCards ] = useState([]);
+    const [ graves, setGraves ] = useState([]);
+    const [ graveyards, setGraveyards ] = useState([]);
     const [ user, setUser ] = useState(null);
     const navigation = useNavigate();
+
+    function ReloadPage () {
+        window.location.reload();
+    }
+
+    function GenerateGraveCards () {
+        let _graveCards = [];
+        let _n = 0;
+        graves.forEach(_grave => {
+            _graveCards.push(<AuditCard type={"grave"} index={_grave.id_number} removeFunction={ReloadPage}/>);
+            _n++;
+        });
+        setGraveCards(_graveCards);
+    }
+
+    function GenerateGraveyardCards () {
+        let _graveyardCards = [];
+        let _n = 0;
+        graveyards.forEach(_graveyard => {
+            _graveyardCards.push(<AuditCard type={"graveyard"} index={_graveyard.graveyard_id} removeFunction={ReloadPage}/>);
+        });
+        setGraveyardCards(_graveyardCards);
+    }
 
     async function CheckRole() {
         try {
@@ -41,8 +66,12 @@ function Audit() {
             const _graveyardRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/graveyards/restricted`, {
                 withCredentials: true,
             });
+            let _graves = _graveRes.data;
+            setGraves(_graves);
             
 
+            let _graveyards = _graveyardRes.data;
+            
         } catch (error) {
             console.error("Error: ",error);
         }
@@ -51,10 +80,19 @@ function Audit() {
     useEffect (() => {
         CheckRole();
     },[])
-    
+
     useEffect (() => {
         FetchAuditCards();
     },[user])
+    
+    useEffect (() => {
+        console.log("Graves Updated");
+        GenerateGraveCards();
+    },[graves])
+
+    useEffect (() => {
+        GenerateGraveyardCards();
+    },[graveyards])
 
     return (
         <Container id="audit-container">
@@ -66,9 +104,6 @@ function Audit() {
                             <Accordion.Header>Graves</Accordion.Header>
                             <Accordion.Body className="audit-card-holder">
                                 {graveCards}
-                                <AuditCard type={"grave"}/>
-                                <AuditCard type={"grave"}/>
-                                <AuditCard type={"graveyard"}/>
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">

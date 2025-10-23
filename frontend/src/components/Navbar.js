@@ -52,7 +52,8 @@ function Navbar() {
             const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
                 withCredentials: true,
             });
-            if (_res) {
+            console.log(_res);
+            if (_res && _res.data.user && _res.data.authentication) {
                 setUser(_res.data.user);
             }
         
@@ -86,7 +87,8 @@ function Navbar() {
             _navigate(`/browse/${_searchBar.value}`);
             _searchBar.value = "";
             _searchBar.blur();
-            setFocusSearchbar(false)
+            setFocusSearchbar(false);
+            window.location.reload();
         }
     }
 
@@ -102,6 +104,24 @@ function Navbar() {
         } else {
             setFocusSearchbar(false)
         }
+    }
+
+    async function LogOutUser () {
+        try {
+            const _res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/logout`, {}, {
+                withCredentials: true,
+            });
+            console.log(_res);
+            _navigate("/");
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function OnLogoClick () {
+        _navigate("/");
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -127,7 +147,7 @@ function Navbar() {
                     <div className='navbar-offcanvas-button' onClick={() => setShowOffCanvas(true)}>
                         <TextAlignJustify size="3.5rem" strokeWidth={"0.05rem"}/>
                     </div>
-                    <Link className='navbar-logo-container' to={"/"}>
+                    <Link className='navbar-logo-container' onClick={OnLogoClick}>
                         <img src={logo}  className='navbar-logo'/>
                     </Link>
                 
@@ -179,13 +199,23 @@ function Navbar() {
                     ))}
                     <hr/>
                     <div className='offcanvas-link-container'>
-                        <NavLink
-                            to="/login"
-                            className="offcanvas-link"
-                            onClick={() => setShowOffCanvas(false)}
-                        >
-                            Log In/Sign Up
-                        </NavLink>
+                        {user?
+                            <Link
+                                className="offcanvas-link"
+                                onClick={LogOutUser}
+                            >
+                                Sign Out
+                            </Link>
+                        :
+                            <NavLink
+                                to="/login"
+                                className="offcanvas-link"
+                                onClick={() => setShowOffCanvas(false)}
+                            >
+                                Log In/Sign Up
+                            </NavLink>
+                        }
+                        
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>

@@ -61,3 +61,9 @@ app.use('/api/graveyards', graveyardRoutes);
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
+
+const saveRoutes = require('./routes/saveRoutes');
+app.use('/api/saves', saveRoutes);
+
+const commentRoutes = require('./routes/commentRoutes');
+app.use('/api/comments', commentRoutes);
