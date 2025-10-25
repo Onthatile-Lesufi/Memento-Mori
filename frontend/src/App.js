@@ -23,7 +23,7 @@ function App() {
             <Navbar/>
 
             <Routes className="site-pages">
-                <Route path='/' element={<Home/>}/>
+                <Route exact path='/' element={<Home/>}/>
                 <Route path='/browse/:browseQuery' element={<Browse/>}/>
                 <Route path='/about' element={<About/>}/>
                 <Route path='/faq' element={<Faq/>}/>
