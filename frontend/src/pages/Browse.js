@@ -27,13 +27,13 @@ const Browse = () => {
     }
 
     async function GetDefaultCards() {
+        if (!browseQuery) return;
         let _graveCards = [];
         let _graveyardCards = [];
         try {
             const _gravesRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/graves/name=${browseQuery}`);
             const _graveyardsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/graveyards/name=${browseQuery}`);
-            console.log(_gravesRes);
-            console.log(_graveyardsRes);
+            
             let _graves = _gravesRes.data;
             if (_graves.length > 10) {
                 let _length = _graves.length - 10;
@@ -65,7 +65,7 @@ const Browse = () => {
 
     return (
         <div className="browse-container">
-            <h2 id="result-title">Search results for: {browseQuery}</h2>
+            <h2 id="result-title">Search results for: {browseQuery ? browseQuery : null}</h2>
             {pageFocus !== PageFocus.GRAVEYARD ? 
                 <>
                     <h3 className="browse-heading">Graves {pageFocus !== PageFocus.GRAVE ? <p className="browse-view-all" onClick={ShowAllGraves}>View All{'>>'}</p> : null}</h3>
