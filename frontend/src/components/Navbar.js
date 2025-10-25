@@ -1,4 +1,4 @@
-import { data, Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './css/Navbar.css';
 import { useEffect, useState } from 'react';
 import TextButton from './TextButton';
