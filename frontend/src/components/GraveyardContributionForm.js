@@ -18,7 +18,6 @@ function GraveyardContributionForm () {
                 address: address,
                 province: province
             });
-            _navigate("/");
         } catch (error) {
             console.error("error:", error);
         }

@@ -185,7 +185,7 @@ function Grave () {
         <Container className="grave-container">
             {grave && graveyard ?
             <>
-                <h2 className="grave-name">{grave.grave_name}, {gender}</h2>
+                <h2 className="grave-name">{grave.grave_name}, {gender}  {user && user.role != "user" ? <Button>Edit</Button> : null}</h2> 
                 <Row>
                     <Col md="6">
                         <div className="grave-image-holder">
@@ -208,7 +208,7 @@ function Grave () {
                         <Button className="grave-buttons" variant="danger" disabled={report} onClick={() => ReportGraveModal(true)}>{report ? "Reported" : "Report"}</Button>
                     </Col>
                 </Row>
-                <GraveCommentSection grave={grave.id_number} user={user.id}/>
+                <GraveCommentSection grave={grave.id_number} user={user ? user.id : null}/>
 
                 <Modal show={showModal} onHide={() => ReportGraveModal(false)}>
                     <Modal.Header closeButton>

@@ -46,7 +46,7 @@ const Graveyard = () => {
 
     return (
         <Container className="graveyard-container">
-            <h2>{graveyard ? graveyard.graveyard_name : "null"}</h2>
+            <h2>{graveyard ? graveyard.graveyard_name : "null"}, {graveyard ? graveyard.graveyard_province : "null"}</h2>
             <p>Address: {graveyard ? graveyard.graveyard_address : "null"}</p>
             <div className="graveyard-grid">{cards}</div>
         </Container>
