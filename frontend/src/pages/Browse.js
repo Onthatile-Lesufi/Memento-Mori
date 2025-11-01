@@ -62,7 +62,7 @@ const Browse = () => {
             _graveyards.forEach(_i => {
                 _graveyardCards.push(<LinkCard name={_i.graveyard_name} link={`/graveyard/${_i.graveyard_id}`}/>);
                 if (_n === 9) {
-                    setGraveyards(_graveyardCards);
+                    setGraveyardsCards(_graveyardCards);
                 }
                 _n++;
             });
