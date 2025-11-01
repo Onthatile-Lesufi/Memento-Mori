@@ -37,18 +37,24 @@ const Browse = () => {
             const _graveyardsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/graveyards/name=${browseQuery}`);
             
             let _graves = _gravesRes.data;
-            _graves.forEach(_i => {
-                _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image}/>);
-            });
-            setGravesCards(_graveCards.length > 10 ? _graveCards.slice(0, 10) : _graves);
-            setGraves(_graveCards);
+            if (_graves) {
+                _graves.forEach(_i => {
+                    _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image}/>);
+                });
+                setGravesCards(_graveCards.length >= 10 ? _graveCards.slice(0, 10) : _graveCards);
+                setGraves(_graveCards);
+            }
+            
 
             let _graveyards = _graveyardsRes.data;
-            _graveyards.forEach(_i => {
-                _graveyardCards.push(<LinkCard name={_i.graveyard_name} link={`/graveyard/${_i.graveyard_id}`}/>);
-            });
-            setGraveyardsCards(_graveyardCards.length > 10 ? _graveyardCards.slice(0, 10) : _graveyardCards);
-            setGraveyards(_graveyardCards);
+            if (_graveyards) {
+                _graveyards.forEach(_i => {
+                    _graveyardCards.push(<LinkCard name={_i.graveyard_name} link={`/graveyard/${_i.graveyard_id}`}/>);
+                });
+                setGraveyardsCards(_graveyardCards.length >= 10 ? _graveyardCards.slice(0, 10) : _graveyardCards);
+                setGraveyards(_graveyardCards);
+            }
+            
 
         } catch (error) {
             console.error("error:", error);
@@ -67,7 +73,7 @@ const Browse = () => {
                 <>
                     <h3 className="browse-heading">Graves {pageFocus !== PageFocus.GRAVE ? <p className="browse-view-all" onClick={ShowAllGraves}>View All{'>>'}</p> : null}</h3>
                     <div className={pageFocus !== PageFocus.GRAVE ? "browse-link-card-row" : "browse-link-card-grid"}>
-                        {pageFocus === PageFocus.GRAVE ? graves : gravesCards}
+                        {pageFocus === PageFocus.GRAVE  ? graves : gravesCards}
                     </div>
                 </>
             : 
