@@ -37,41 +37,19 @@ const Browse = () => {
             const _graveyardsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/graveyards/name=${browseQuery}`);
             
             let _graves = _gravesRes.data;
-            if (_graves.length > 10) {
-                let _length = _graves.length - 10;
-                _graves.slice(10,_length);
-            }
-
-            let _n = 0;
             _graves.forEach(_i => {
                 _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image}/>);
-                if (_n === 9) {
-                    setGravesCards(_graveCards);
-                }
-                _n++;
             });
-            if (_n < 9) {
-                setGravesCards(_graveCards);
-            }
+            setGravesCards(_graveCards.length > 10 ? _graveCards.slice(0, 10) : _graves);
             setGraves(_graveCards);
 
             let _graveyards = _graveyardsRes.data;
-            if (_graveyards.length > 10) {
-                let _length = _graveyards.length - 10;
-                _graveyards.slice(10,_length);
-            }
-            _n = 0;
             _graveyards.forEach(_i => {
                 _graveyardCards.push(<LinkCard name={_i.graveyard_name} link={`/graveyard/${_i.graveyard_id}`}/>);
-                if (_n === 9) {
-                    setGraveyardsCards(_graveyardCards);
-                }
-                _n++;
             });
-            if (_n < 9) {
-                setGraveyardsCards(_graveyardCards);
-            }
+            setGraveyardsCards(_graveyardCards.length > 10 ? _graveyardCards.slice(0, 10) : _graveyardCards);
             setGraveyards(_graveyardCards);
+
         } catch (error) {
             console.error("error:", error);
         }
