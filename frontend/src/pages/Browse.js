@@ -50,7 +50,9 @@ const Browse = () => {
                 }
                 _n++;
             });
-            
+            if (_n < 9) {
+                setGravesCards(_graveCards);
+            }
             setGraves(_graveCards);
 
             let _graveyards = _graveyardsRes.data;
@@ -66,6 +68,9 @@ const Browse = () => {
                 }
                 _n++;
             });
+            if (_n < 9) {
+                setGraveyardsCards(_graveyardCards);
+            }
             setGraveyards(_graveyardCards);
         } catch (error) {
             console.error("error:", error);
