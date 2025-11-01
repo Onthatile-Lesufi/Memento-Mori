@@ -125,8 +125,7 @@ function Navbar() {
     }
 
     useEffect(() => {
-        window.addEventListener("resize",HandleSearchbar);
-        setHideSearchbar(window.innerWidth <= 720);
+        HandleSearchbar();
         GetUser();
     }, []);
 
