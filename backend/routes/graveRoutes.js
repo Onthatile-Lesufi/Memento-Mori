@@ -58,6 +58,22 @@ router.get("/id=:id", async (req, res) => {
     }
 })
 
+router.get("/id=:id/graveyard", async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const _sql = `SELECT * FROM grave INNER JOIN graveyard ON grave.graveyard_id = graveyard.graveyard_id WHERE grave.id_number = ${_id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        })
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+})
+
 router.get("/name=:name", async (req, res) => {
     try {
         const _name = req.params.name;
@@ -207,6 +223,45 @@ router.patch("/restrict", async (req, res) => {
                 res.status(400).json({ error: err.message });
             } {
                 res.status(200).json(data);
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
+
+router.patch("/update", upload.single('image'), async (req, res) => {
+    const formData = req.body;
+    try {
+        const _sql = `UPDATE grave SET id_number='${formData.id}',grave_name='${formData.name}',death_date='${formData.dod}',burial_date='${formData.dob}',graveyard_id='${formData.graveyard}',grave_visibility = false WHERE id_number = ${formData.origin}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                if (req.file) {
+                    cloudinary.uploader.upload(req.file.path, async (err,result) => {
+                        if (err) {
+                            console.log(err);
+                            return res.status(400).json({
+                                message: "Cloudinary Error",
+                                error: err
+                            })
+                        }
+                    
+                        _cloudinaryResult = result;
+                        if (!_cloudinaryResult) return;
+                        const _cloudinarySql = `UPDATE grave SET grave_image = '${_cloudinaryResult.secure_url}' WHERE grave.id_number = '${formData.id}'`;
+                        database.query(_cloudinarySql, (err, data) => {
+                            if (err) {
+                                res.status(400).json({ error: err.message });
+                            } {
+                                res.status(200).json(data);
+                            }
+                        })
+                    })
+                } else {
+                    res.status(200).json(data);
+                }
             }
         })
     } catch (error) {

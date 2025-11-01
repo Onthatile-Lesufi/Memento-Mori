@@ -102,7 +102,7 @@ function Navbar() {
         if (hideSearchbar) {
 
         } else {
-            setFocusSearchbar(false)
+            setFocusSearchbar(false);
         }
     }
 
@@ -126,6 +126,7 @@ function Navbar() {
 
     useEffect(() => {
         window.addEventListener("resize",HandleSearchbar);
+        setHideSearchbar(window.innerWidth <= 720);
         GetUser();
     }, []);
 
@@ -154,7 +155,7 @@ function Navbar() {
                     <div className='navbar-searchbar-container'> 
                         {hideSearchbar ? 
                             <div className='navbar-searchbar-button' onClick={()=>{setFocusSearchbar(true)}}>
-                                <Search size="3rem" strokeWidth="0.1rem"/>
+                                <Search size="2.95rem" strokeWidth="0.1rem"/>
                             </div>
                         :  
                             <Form.Control id='navbar-searchbar' className='navbar-searchbar' type='text' placeholder='Search...' onKeyDown={handleKeyPress} onChange={(e) =>setBrowseQuery(e.target.value)}/>
@@ -197,6 +198,11 @@ function Navbar() {
                             </NavLink>
                         </div>
                     ))}
+                    {hideSearchbar && user  ? 
+                        <NavLink to={`/user/${user.email}`}>{user.username}</NavLink>
+                    :
+                        null
+                    }
                     <hr/>
                     <div className='offcanvas-link-container'>
                         {user?

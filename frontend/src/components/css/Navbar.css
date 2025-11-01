@@ -145,6 +145,30 @@
 }
 
 @media (max-width: 720px) {
+    .navbar-container {
+        height: 7.5vh;
+    }
+
+    .navbar-focus-searchbar-container {
+        align-content: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .navbar-logo-container {
+        height: 100%;
+        width: fit-content;
+        float: left;
+        padding-top: 0.9vh;
+        padding-bottom: 0.9vh;
+        margin-right: 2.5%;
+    }
+
+    .navbar-mobile-searchbar {
+        margin: 0;
+        align-self: center;
+    }
+
     #login-button-container {
         display: none;
     }

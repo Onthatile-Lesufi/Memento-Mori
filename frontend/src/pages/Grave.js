@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./css/Grave.css";
 import GraveInfoDisplayPanel from "../components/GraveInfoDisplayPanel";
 import GraveCommentSection from "../components/GraveCommentSection";
@@ -117,7 +117,7 @@ function Grave () {
             const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/graves/id=${index}`);
             let _grave = _res.data[0];
             const _image = _grave.grave_image;
-            console.log(user);
+            
             if (!_grave.grave_visibility && user.role !== "admin") {
                 alert("Page Quarantined\nReturning to Home");
                 return navigation("/");
@@ -185,7 +185,7 @@ function Grave () {
         <Container className="grave-container">
             {grave && graveyard ?
             <>
-                <h2 className="grave-name">{grave.grave_name}, {gender}  {user && user.role != "user" ? <Button>Edit</Button> : null}</h2> 
+                <h2 className="grave-name">{grave.grave_name}, {gender}  {user && user.role != "user" ? <Link to={`../edit/${index}`}><Button>Edit</Button></Link> : null}</h2> 
                 <Row>
                     <Col md="6">
                         <div className="grave-image-holder">

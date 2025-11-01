@@ -22,7 +22,7 @@ const GraveCommentSection = ({grave, user}) => {
     async function GetComments() {
         try {
             const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/comments/grave=${grave}`);
-            console.log(_res);
+            
             let _comments = _res.data;
             let _commentIndices = [];
             _comments.forEach(_comment => {

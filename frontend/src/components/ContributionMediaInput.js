@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Form } from "react-bootstrap";
 import "./css/ContributionMediaInput.css";
 import DefaultImage from "../assets/images/WhiteSquare.png";
 
-const ContributionMediaInput = ({returnFunction}) => {
+const ContributionMediaInput = ({defaultImage, returnFunction}) => {
     const [src, setSrc] = useState(DefaultImage);
 
     const OnImageAdd = (img) => {
@@ -12,6 +12,12 @@ const ContributionMediaInput = ({returnFunction}) => {
             returnFunction(img.target.files[0]);
         }
     }
+
+    useEffect(() => {
+        if (defaultImage) {
+            setSrc(defaultImage);
+        }
+    },[])
 
     return (
         <Col className="contribution-media-input-container">
