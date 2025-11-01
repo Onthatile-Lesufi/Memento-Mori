@@ -15,6 +15,8 @@ const Browse = () => {
 
     const [ graves, setGraves ] = useState([]);
     const [ graveyards, setGraveyards ] = useState([]);
+    const [ gravesCards, setGravesCards ] = useState([]);
+    const [ graveyardsCards, setGraveyardsCards ] = useState([]);
     const { browseQuery } = useParams();
     const [ pageFocus, setPageFocus ] = useState(PageFocus.NONE);
 
@@ -39,9 +41,16 @@ const Browse = () => {
                 let _length = _graves.length - 10;
                 _graves.slice(10,_length);
             }
+
+            let _n = 0;
             _graves.forEach(_i => {
                 _graveCards.push(<LinkCard name={_i.grave_name} link={`/grave/${_i.id_number}`} image={_i.grave_image}/>);
+                if (_n === 9) {
+                    setGravesCards(_graveCards);
+                }
+                _n++;
             });
+            
             setGraves(_graveCards);
 
             let _graveyards = _graveyardsRes.data;
@@ -49,8 +58,13 @@ const Browse = () => {
                 let _length = _graveyards.length - 10;
                 _graveyards.slice(10,_length);
             }
+            _n = 0;
             _graveyards.forEach(_i => {
                 _graveyardCards.push(<LinkCard name={_i.graveyard_name} link={`/graveyard/${_i.graveyard_id}`}/>);
+                if (_n === 9) {
+                    setGraveyards(_graveyardCards);
+                }
+                _n++;
             });
             setGraveyards(_graveyardCards);
         } catch (error) {
@@ -70,7 +84,7 @@ const Browse = () => {
                 <>
                     <h3 className="browse-heading">Graves {pageFocus !== PageFocus.GRAVE ? <p className="browse-view-all" onClick={ShowAllGraves}>View All{'>>'}</p> : null}</h3>
                     <div className={pageFocus !== PageFocus.GRAVE ? "browse-link-card-row" : "browse-link-card-grid"}>
-                        {graves}
+                        {pageFocus === PageFocus.GRAVE ? graves : gravesCards}
                     </div>
                 </>
             : 
@@ -80,7 +94,7 @@ const Browse = () => {
                 <>
                     <h3 className="browse-heading">Graveyards {pageFocus !== PageFocus.GRAVEYARD ? <p className="browse-view-all" onClick={ShowAllGraveyards}>View All{'>>'}</p> : null}</h3>
                     <div className={pageFocus !== PageFocus.GRAVEYARD ? "browse-link-card-row" : "browse-link-card-grid"}>
-                        {graveyards}
+                        {pageFocus === PageFocus.GRAVEYARD ? graveyards : graveyardsCards}
                     </div>
                 </>
             : 

@@ -52,7 +52,7 @@ function Navbar() {
             const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
                 withCredentials: true,
             });
-            console.log(_res);
+            
             if (_res && _res.data.user && _res.data.authentication) {
                 setUser(_res.data.user);
             }
@@ -94,7 +94,7 @@ function Navbar() {
 
     function HandleOffcanvasButton (index) {
         setShowOffCanvas(false);
-        _navigate(index.endPoint);
+        if (index) _navigate(index.endPoint);
     }
 
     function HandleSearchbar () {
@@ -198,7 +198,19 @@ function Navbar() {
                         </div>
                     ))}
                     {hideSearchbar && user  ? 
-                        <NavLink to={`/user/${user.email}`}>{user.username}</NavLink>
+                        <div 
+                            className='offcanvas-link-container'
+                            // onClick={()=> HandleOffcanvasButton(_index)}
+                        >
+                            <NavLink 
+                                to={`/user/${user.email}`}
+                                className="offcanvas-link"
+                                style={({ isActive }) => ({
+                                  fontWeight: isActive ? "800" : "normal",
+                                })}
+                                onClick={() => setShowOffCanvas(false)}
+                            >{user.username}</NavLink>
+                        </div>
                     :
                         null
                     }
