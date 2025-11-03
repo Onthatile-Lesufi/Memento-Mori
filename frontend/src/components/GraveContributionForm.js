@@ -43,7 +43,7 @@ function GraveContributionForm() {
         try {  
             const _res = await axios.post(`${process.env.REACT_APP_API_URL}/api/graves/register`,formData,config);
             console.log(_res.data);
-            // _navigate("/");
+            window.location.reload();
         } catch (error) {
             console.error("error:", error);
         }
