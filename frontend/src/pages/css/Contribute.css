@@ -30,8 +30,7 @@
 
 .tab-content-display {
     margin-top: 5vh;
-    height: 60vh;
-    max-height: 75vh;
+    min-height: 60vh;
     --bs-gutter-x: 0;
     align-content: center;
 }
