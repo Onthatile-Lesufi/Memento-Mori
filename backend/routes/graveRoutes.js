@@ -6,18 +6,7 @@ const path = require('path');
 const fs = require("fs");
 
 const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: (req, file, cd) => {
-        const uploadPath = `../backend/assets/graves/`;
-        if (!fs.existsSync(uploadPath)) {
-            fs.mkdirSync(uploadPath, { recursive: true });
-        }
-        cd(null, uploadPath);
-    },
-    filename: (req, file, cd) => {
-        cd(null, Date.now() +"-"+ file.originalname.slice(0, file.originalname.indexOf('.')) +path.extname(file.originalname));
-    }
-});
+const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
 const cloudinary = require("cloudinary").v2;
@@ -150,7 +139,7 @@ router.post("/register", upload.single('image'), async (req, res) => {
                 res.status(400).json({ error: err.message });
             } {
                 if (req.file) {
-                    cloudinary.uploader.upload(req.file.path, async (err,result) => {
+                    cloudinary.uploader.upload(req.file.buffer, async (err,result) => {
                         if (err) {
                             console.log(err);
                             return res.status(400).json({
