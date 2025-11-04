@@ -86,7 +86,6 @@ function Audit() {
     },[user])
     
     useEffect (() => {
-        console.log("Graves Updated");
         GenerateGraveCards();
     },[graves])
 

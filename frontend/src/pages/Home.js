@@ -3,8 +3,32 @@ import './css/Home.css';
 import CircleImage from "../assets/images/christian-1284529_960_720.jpg";
 import { Link } from 'react-router-dom';
 import BlackLogo  from '../assets/graphics/Logo_Black.svg';
+import { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 function Home() {
+    const [ user, setUser ] = useState(null);
+
+    async function GetUser() {
+        try {
+            const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
+                withCredentials: true,
+            });
+            
+            if (_res && _res.data.user && _res.data.authentication) {
+                setUser(_res.data.user);
+            }
+        
+        } catch (error) {
+            console.error("Error: ",error);
+        }
+    }
+    
+    useEffect(() => {
+        GetUser();
+    }, []);
+
     return (
         <Container id="home-container">
             <div className='landing-container'>
@@ -20,7 +44,7 @@ function Home() {
                             <br/><br/>Don't let the locations of important family members be lost to time. Explore South Africa's sacred spaces with absolute certainty.
                             <br/><br/>From windswept rural plots to historic city cemeteries, Memento Mori offers a curated window into the final resting places that shape our collective story.
                         </p>
-                        <Link to={"/signup"}>
+                        <Link to={user ? `/user/${user.email}` : "/login"}>
                             <Button className='landing-button'>Get Started</Button>
                         </Link>
                     </Col>
@@ -41,7 +65,7 @@ function Home() {
                             
                         <br/><br/>Contribute photos, stories, and records to preserve legacy
                     </h3>
-                    <Link to={"/signup"}>
+                    <Link to={user ? `/user/${user.email}` : "/login"}>
                         <Button className='landing-button'>Get Started</Button>
                     </Link>
                 </Col>
