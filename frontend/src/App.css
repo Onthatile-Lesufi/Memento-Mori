@@ -1,6 +1,7 @@
 .App {
   background-color: green;
   background-image: url("./assets/images/pexels-arina-krasnikova-6907779.jpg");
+  overflow: hidden;
 }
 
 .App-logo {

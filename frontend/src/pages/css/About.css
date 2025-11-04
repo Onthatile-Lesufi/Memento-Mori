@@ -32,3 +32,10 @@
     height: 40vh;
     object-fit: contain;
 }
+
+@media (max-width: 720px) {
+    .origin-row{
+        padding: 0;
+        margin-bottom: 5vh;
+    }
+}
