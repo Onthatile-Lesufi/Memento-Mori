@@ -34,3 +34,9 @@
     --bs-gutter-x: 0;
     align-content: center;
 }
+
+@media (max-width: 768px) {
+    .contribute-container{
+        padding-top: 5vh;
+    }
+}

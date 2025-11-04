@@ -62,6 +62,16 @@
         overflow-x: scroll;
         overflow-y: hidden;
     }
+
+    .browse-link-card-grid {
+        width: 100%;
+        min-height: 30vh;
+        margin-bottom: 5vh;
+        display: grid;
+        grid-template-columns: 100%;
+        column-gap: 0%;
+        row-gap: 5%;
+    }
 }
 
 @media (max-width: 576px) {

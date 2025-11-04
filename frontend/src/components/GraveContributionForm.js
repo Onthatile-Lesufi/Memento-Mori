@@ -54,11 +54,11 @@ function GraveContributionForm() {
     },[])
 
     return (
-        <Form onSubmit={HandleSubmit}>
+        <Form className="grave-contribute-form" onSubmit={HandleSubmit}>
             <Container>
                 <Row>
                     <ContributionMediaInput returnFunction={setGraveImage}/>
-                    <Col md="6">
+                    <Col className="grave-contribute-input-col" md="6">
                         <ContributionInput placeholder={"Name"} inputType={"text"} returnFunction={setName}/>
                         <ContributionInput placeholder={"ID Number"} inputType={"text"} returnFunction={setId}/>
                         <ContributionInput placeholder={"Date Of Death"} inputType={"Date"} returnFunction={setDod}/>

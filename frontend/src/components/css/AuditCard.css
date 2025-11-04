@@ -1,5 +1,6 @@
 .audit-card-container {
     width: 100%;
+    min-height: fit-content;
     border-width: 0.03125rem;
     border-style: solid;
     position: relative;
@@ -7,7 +8,7 @@
 
 .audit-card-image-col {
     width: 30%;
-    height: 100%;
+    min-height: 100%;
     float: left;
 }
 
@@ -25,7 +26,7 @@
 
 .audit-card-text-col {
     width: 68%;
-    height: 100%;
+    min-height: 100%;
     align-content: center;
     float: right;
     margin-left: 2%;
@@ -33,7 +34,7 @@
 
 .audit-card-button-container {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
     position: absolute;
@@ -46,10 +47,18 @@
 
 .audit-card-button {
     height: 4.5vh;
-    width: 15%;
+    width: 25%;
 }
 
 @media (max-width: 576px) {
+    .audit-card-button-container{
+        display: grid;
+    }
+    .audit-card-button {
+        height: 4.5vh;
+        width: 50vw;
+    }
+
     .audit-card-container {
         width: 100%;
         border-width: 0.03125rem;
@@ -63,10 +72,13 @@
     }
     
     .audit-card-text-col {
-        height: 27.5vh;
+        padding-top: 2.5vh;
+        padding-bottom: 1.5vh;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        min-height: 27.5vh;
         width: 100%;
         margin: 0;
-        padding-left: 5vw;
         align-content: center;
         float: none;
     }

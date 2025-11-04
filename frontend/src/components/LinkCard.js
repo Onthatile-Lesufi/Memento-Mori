@@ -1,5 +1,5 @@
 import "./css/LinkCard.css";
-import GraveImage from "../assets/images/grave-3241769_1280.jpg";
+import GraveImage from "../assets/images/WhiteSquare.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

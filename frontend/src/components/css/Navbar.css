@@ -140,6 +140,16 @@
     color: white;
 }
 
+.btn-close {
+    border-radius: 0%;
+    padding-right: 2vw;
+    background-color: white;
+}
+
+.offcanvas-header .btn-close {
+    margin-right: 0.125vw;
+}
+
 @media (max-width: 1024px) {
     
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./css/AuditCard.css";
-import GraveImage from "../assets/images/pexels-koolshooters-6495752.jpg";
+import GraveImage from "../assets/images/WhiteSquare.png";
 import axios from "axios";
 import { data } from "react-router-dom";
 

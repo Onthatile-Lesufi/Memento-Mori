@@ -22,6 +22,15 @@
     height: 75vh;
     overflow-x: hidden;
     overflow-y: scroll;
+    grid-auto-rows: 12.5vh;
+}
+
+.user-grave-info-container {
+    display: grid;
+    gap: 0.5vh;
+    height: 75vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .user-grave-image-container {
@@ -35,4 +44,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .user-grave-card-container {
+        grid-template: none;
+        display: grid;
+        grid-auto-flow: column;
+        gap: 0.5vh;
+        height: 0vh;
+        min-height: 15vh;
+        grid-auto-columns: 45vw;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
 }

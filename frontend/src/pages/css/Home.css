@@ -94,6 +94,10 @@
         margin-bottom: 3.5vh;
     }
 
+    .landing-copy {
+        padding-right: -0%;
+    }
+
     .services-copy {
         padding-left: 0%;
         padding-right: 0%;

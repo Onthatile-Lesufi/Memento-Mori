@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./css/User.css";
 import { Col, Container, Row } from "react-bootstrap";
 import UserLinkCard from "../components/UserLinkCard";
-import GraveImage from "../assets/images/grave-3241769_1280.jpg";
+import GraveImage from "../assets/images/WhiteSquare.png";
 import GraveInfoDisplayPanel from "../components/GraveInfoDisplayPanel";
 import axios from "axios";
 
@@ -77,7 +77,7 @@ function User () {
                 <Col className="user-grave-card-container" md="3">
                     {graveCards}
                 </Col>
-                <Col className="user-grave-card-container" md = "9">
+                <Col className="user-grave-info-container" md = "9">
                     <div className="user-grave-image-container">
                         <img className="user-grave-image" src={grave.image ? grave.image : GraveImage}/>
                     </div>
