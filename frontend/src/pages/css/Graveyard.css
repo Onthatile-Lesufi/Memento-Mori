@@ -11,8 +11,27 @@
 }
 
 .graveyard-grid {
+    min-height: 25vh;
     display: grid;
     grid-template-columns: 24% 24% 24% 24%;
     column-gap: 1%;
     row-gap: 2%;
+}
+
+@media (max-width: 950px) {
+    .graveyard-grid {
+        grid-template-columns: 49% 49%;
+        grid-auto-rows: 12vh;
+        column-gap: 1%;
+        row-gap: 2%;
+    }
+}
+
+@media (max-width: 450px) {
+    .graveyard-grid {
+        grid-template-columns: 100%;
+        grid-template-rows: max-content;
+        grid-auto-rows: 12vh;
+        row-gap: 2%;
+    }
 }
