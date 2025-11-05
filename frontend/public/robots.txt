@@ -1,6 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /#/*
+Allow: /#/faq
+Allow: /#/about
+Allow: /#/login
+Allow: /#/signup
 Disallow: /#/user/*
 Disallow: /#/browse/*
 Disallow: /#/contribute

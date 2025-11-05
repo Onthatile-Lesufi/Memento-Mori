@@ -3,7 +3,8 @@
  - [Overview](#overview)
  - [Services](#services)
     - [Page Breakdown](#page-breakdown)
- - [Data Visualisation](#data-visualisation)
+ <!-- - [Data Visualisation](#data-visualisation) -->
+
  - [Deployment](#deployment)
  - [Search Engine Optimisation](#search-engine-optimisation)
  - [Built With](#built-with)
@@ -77,7 +78,8 @@ The page used to edit information related to grave.
 
 ![Edit Page](/documentation/Screenshots/edit.png)
 
-## Data Visualisation
+<!-- ## Data Visualisation
+ -->
 
 ## Deployment
 
@@ -86,6 +88,46 @@ For the near future, Memento Mori is currently deployed using Heroku. Aside from
 Heroku was the platform of choice as it is specifically designed for prototyping. Where Heroku lacks in flexibility compared to other depolyment platforms such as AWS and Azure, it makes up for in a quick start-up process plus easy deployment through the use of a git bash terminal or seamless integration with Github. One added benefit of this Github integration is that it allows easy auto deployment. Meaning that features and bug fixes can be pushed onto the site as soon as they have been pushed onto the github project's production branch.
 
 Heroku also provides numerous add-ons for database deployment. For this site, JawsDB was used instead of Heroku's built-in SQL database hosting, Postgres. This was done as JawsDB provides a free tier deployment option that provide ample services for the site's needs.
+
+## Personal Deployment
+
+### Prerequisites
+
+- Node.js (v14+)
+- npm
+- [SQL database]() (Imported into phpmyadmin or MySQL Workbench)
+- Git
+
+### How to Install
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/Onthatile-Lesufi/Memento-Mori
+```
+
+2. **Open The Repository**
+
+3. **Install Frontend**
+
+3.1. Open a new terminal then input the following:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+4. **Install Backend** 
+
+4.1. Open a new terminal then input the following:
+
+```bash
+cd backend
+npm install
+npm start
+```
+
 
 ## Search Engine Optimisation
 
@@ -104,7 +146,7 @@ Disallow: /#/contribute
 Disallow: /#/audit
 ```
 
-
+At the time of writing I am still struggling to setup indexing for any route aside from the landing page. However I was still able to obtain these metrics from Google Analytics.
 
 The following metric are accurate to https://mementomorisa.co.za as of 5 November 2025 at 01:51am Central African Time:
 
@@ -188,4 +230,4 @@ Unrelated to testing, NodeJS was the primary tool in this site's creation as pro
 
 ## Extra Resources
 
-Walkthrough Video
+Walkthrough Video - [Link](https://drive.google.com/file/d/1fsm_lRcRdM_LyLd9CEWWtgKjm3aGF6ys/view?usp=sharing)

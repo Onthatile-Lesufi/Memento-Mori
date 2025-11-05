@@ -228,7 +228,7 @@ router.patch("/update", upload.single('image'), async (req, res) => {
                 res.status(400).json({ error: err.message });
             } {
                 if (req.file) {
-                    cloudinary.uploader.upload(req.file.path, async (err,result) => {
+                    cloudinary.uploader.upload(`data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`, async (err,result) => {
                         if (err) {
                             console.log(err);
                             return res.status(400).json({
