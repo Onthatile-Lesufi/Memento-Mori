@@ -133,6 +133,12 @@ npm start
 
 During this website's deployment period, I wish to see my website get used. Obviously sharing it amongst friends can be valuable but in order to measure your actual skills you will need to ensure that people all over the website's particular region. That is where SEO comes in the picture.
 
+One of the easiest boosts to SEO adding keywords. For Memeto Mori the keywords look thusly:
+
+```HTML
+<meta name="keywords" content="Memento Mori,Memento Mori SA,Memento Mori ZA, Memento Morisa, Memento Moriza,Memento Mori South Africa,Graves, Graveyards, Cemeteries, Memorials, South Africa, South African Dead,South African Deceased, South African Memorials,South African Memorials, South African Cemeteries,South African Cemetery,South African Graveyards,South African Graves,South African Graveyard,South African Grave, Cape Town Dead, Cape Town Deceased, Cape Town Memorials, Cape Town Memorials, Cape Town Cemeteries, Cape Town Cemetery, Cape Town Graveyards, Cape Town Graves, Cape Town Graveyard, Cape Town Grave, Joburg Dead, Joburg Deceased, Joburg Memorials, Joburg Memorials, Joburg Cemeteries, Joburg Cemetery, Joburg Graveyards, Joburg Graves, Joburg Graveyard, Joburg Grave, Johannesburg Dead, Johannesburg Deceased, Johannesburg Memorials, Johannesburg Memorials, Johannesburg Cemeteries, Johannesburg Cemetery, Johannesburg Graveyards, Johannesburg Graves, Johannesburg Graveyard, Johannesburg Grave, Durban Dead, Durban Deceased, Durban Memorials, Durban Memorials, Durban Cemeteries, Durban Cemetery, Durban Graveyards, Durban Graves, Durban Graveyard, Durban Grave, Limpopo Dead, Limpopo Deceased, Limpopo Memorials, Limpopo Memorials, Limpopo Cemeteries, Limpopo Cemetery, Limpopo Graveyards, Limpopo Graves, Limpopo Graveyard, Limpopo Grave, KZN Dead, KZN Deceased, KZN Memorials, KZN Memorials, KZN Cemeteries, KZN Cemetery, KZN Graveyards, KZN Graves, KZN Graveyard, KZN Grave, Westpark Cemetery, Fourways Memorial, Nasrec Memorial, Avalon">
+```
+
 When developing this site one of the first potential hurdle that became evident was the one page nature of the site compounded by the use of the hash router which makes it difficult for query bots to effectively scrape the site for every applicable endpoint.
 
 One way that I could move towards a solution to this issue was to update robots.txt:
