@@ -1,0 +1,2 @@
+Custom Domain: https://mementomorisa.co.za
+Heroku Domain: https://memento-mori-za-10b344635f35.herokuapp.com/
