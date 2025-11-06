@@ -41,6 +41,12 @@ function Faq() {
                         any one of our 24/7 admin team and we can discuss your fit within our team's structure.
                     </Accordion.Body>
                 </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>How do I contact the admins?</Accordion.Header>
+                    <Accordion.Body>
+                        <p><b>Onthatile Lesufi:</b><br/>Email: onthatumi@outlook.com</p>
+                    </Accordion.Body>
+                </Accordion.Item>
             </Accordion>
         </Container>
     )

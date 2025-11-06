@@ -21,7 +21,7 @@ function Contribute() {
             });
             if (_res) {
                 let _user = _res.data.user;
-                if (!_user || _user.role !== "admin") {
+                if (!_user || _user.role === "user") {
                     alert("Insufficient rights\nReturning to Home");
                     navigation("/");
                     return;
