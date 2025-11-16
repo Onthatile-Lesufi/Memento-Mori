@@ -144,6 +144,87 @@ router.get("/email=:email", async (req, res) => {
     }
 })
 
+router.patch("/update/all", async (req, res) => {
+    const {id, username, email, password} = req.body;
+    try {
+        const _sql = `INSERT INTO user( username, user_email, password ) VALUES ('${username}','${email}','${password}') WHERE user_id = ${id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        });
+    } catch (error) {
+        console.log("error: ", error);
+    }
+})
+
+router.patch("/update/password", async (req, res) => {
+    const {id, password} = req.body;
+    console.log(req.body);
+    try {
+        const _sql = `UPDATE user SET password ='${password}' WHERE user_id = ${id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        });
+    } catch (error) {
+        console.log("error: ", error);
+    }
+})
+
+router.patch("/update/username", async (req, res) => {
+    const {id, username} = req.body;
+    try {
+        const _sql = `UPDATE user SET username ='${username}' WHERE user_id = ${id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        });
+    } catch (error) {
+        console.log("error: ", error);
+    }
+})
+
+router.patch("/update/email", async (req, res) => {
+    const {id, email} = req.body;
+    try {
+        const _sql = `UPDATE user SET user_email = '${email}' WHERE user_id = ${id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        });
+    } catch (error) {
+        console.log("error: ", error);
+    }
+})
+
+router.patch("/update/role", async (req, res) => {
+    const {id, role} = req.body;
+    try {
+        const _sql = `UPDATE user SET user_role = '${role}' WHERE user_id = ${id}`;
+        database.query(_sql, (err, data) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } {
+                res.status(200).json(data);
+            }
+        });
+    } catch (error) {
+        console.log("error: ", error);
+    }
+})
+
 async function PasswordTest(password) {
     let _result = await bcrypt.compare(password, password);
     return _result;

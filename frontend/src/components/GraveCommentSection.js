@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import "./css/GraveCommentSection.css";
 import { useEffect } from "react";
 import axios from "axios";
+import { Paperclip } from "lucide-react";
 
 const GraveCommentSection = ({grave, user}) => {
     const [commentText, setCommentText] = useState("");
@@ -41,12 +42,13 @@ const GraveCommentSection = ({grave, user}) => {
     return (
         <div className="grave-comment-section">
             <div className="grave-comment-form">
-                <Form.Group>
+                <Form.Group className="grave-comment-text-input">
                     <label>Comments:</label>
-                    <Form.Control className="grave-comment-text-input" as={"textarea"} rows={2} onChange={(e) => setCommentText(e.target.value)}/>
-                    <Button onClick={HandleButtonPress} className="comment-button">Comment</Button>
+                    <Form.Control  as={"textarea"} rows={2} onChange={(e) => setCommentText(e.target.value)}/>
                 </Form.Group>
+                {/* <Paperclip className="grave-comment-attach-button"/>     */}
             </div>
+            <Button onClick={HandleButtonPress} className="comment-button">Comment</Button>
             <div className="grave-comment-container">
                 {comments.length > 0 ? 
                 <div>

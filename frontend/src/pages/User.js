@@ -1,13 +1,14 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./css/User.css";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import UserLinkCard from "../components/UserLinkCard";
 import GraveImage from "../assets/images/WhiteSquare.png";
 import GraveInfoDisplayPanel from "../components/GraveInfoDisplayPanel";
 import axios from "axios";
 
 function User () {
+    const [userData, setUserData] = useState(null);
     const [username,setUsername] = useState("John Doe");
     const [graves,setGraves] = useState([]);
     const [graveCards,setGraveCards] = useState([]);
@@ -18,6 +19,19 @@ function User () {
         image: null
     });
     const {user} = useParams();
+
+    async function CheckLogin() {
+        try {
+            const _res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/current`, {
+                withCredentials: true,
+            });
+            if (_res.data) {
+                if (_res.data.user.email === user) setUserData(_res.data.user);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     async function DisplayGrave (tempGrave) {
         if (!tempGrave) return;
@@ -64,6 +78,7 @@ function User () {
 
     useEffect(() => {
         GetUser();
+        CheckLogin();
     },[])
 
     useEffect(() => {
@@ -72,7 +87,7 @@ function User () {
 
     return (
         <Container className="user-containers">
-            <h2 className="user-title">{username}'s saved graves</h2>
+            <h2 className="user-title">{username}'s saved graves {userData ? <Link to={`/user/${user}/edit`}><Button>Edit</Button></Link>:null}</h2>
             <Row>
                 <Col className="user-grave-card-container" md="3">
                     {graveCards}

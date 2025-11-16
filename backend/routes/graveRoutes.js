@@ -137,7 +137,7 @@ router.post("/register", upload.single('image'), async (req, res) => {
         database.query(_sql, (err, data) => {
             if (err) {
                 res.status(400).json({ error: err.message });
-            } {
+            } else {
                 if (req.file) {
                     cloudinary.uploader.upload(`data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`, async (err,result) => {
                         if (err) {
@@ -226,7 +226,7 @@ router.patch("/update", upload.single('image'), async (req, res) => {
         database.query(_sql, (err, data) => {
             if (err) {
                 res.status(400).json({ error: err.message });
-            } {
+            } else {
                 if (req.file) {
                     cloudinary.uploader.upload(`data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`, async (err,result) => {
                         if (err) {

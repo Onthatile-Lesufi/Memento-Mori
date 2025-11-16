@@ -16,6 +16,7 @@ import Graveyard from './pages/Graveyard';
 import User from './pages/User';
 import Audit from './pages/Audit';
 import InfoEdit from './pages/InfoEdit';
+import UserEdit from './pages/UserEdit';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 <Route path='/grave/:index' element={<Grave/>}/>
                 <Route path='/graveyard/:index' element={<Graveyard/>}/>
                 <Route path='/user/:user' element={<User/>}/>
+                <Route path='/user/:user/edit' element={<UserEdit/>}/>
                 <Route path='/edit/:index' element={<InfoEdit/>}/>
             </Routes>
 
